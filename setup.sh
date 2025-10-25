@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "╔═══════════════════════════════════════════════╗"
-echo "║   CODESPACE-GUI INSTALLATION SCRIPT           ║"
+echo "║   CODEFONDH VNC SERVER INSTALLATION           ║"
 echo "║   This may take 5-10 minutes on first run    ║"
 echo "╚═══════════════════════════════════════════════╝"
 echo ""
@@ -53,11 +53,18 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -qq \
     git \
     curl \
     wget \
+    python3 \
+    python3-pip \
+    python3-numpy \
     > /dev/null 2>&1
 
 if [ $? -ne 0 ]; then
     echo "⚠️  Warning: Some optional packages failed to install"
 fi
+
+# Install websockify for web VNC clients
+echo "🌐 [4.5/5] Installing websockify for web browser access..."
+sudo pip3 install websockify numpy -q 2>/dev/null || echo "⚠️  Websockify install skipped"
 
 # Configure VNC startup script
 echo "⚙️  [5/5] Configuring VNC environment..."
