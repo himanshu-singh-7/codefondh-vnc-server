@@ -1,0 +1,37 @@
+{
+  "name": "Codefondh VNC Server Environment",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": true,
+      "installOhMyZsh": true,
+      "upgradePackages": true
+    }
+  },
+  
+  "forwardPorts": [5901],
+  
+  "portsAttributes": {
+    "5901": {
+      "label": "VNC Server (Codefondh)",
+      "onAutoForward": "notify",
+      "visibility": "public"
+    }
+  },
+  
+  "postCreateCommand": "chmod +x start.sh setup.sh && echo '✅ Codefondh VNC Server ready! Run ./start.sh to launch'",
+  
+  "remoteUser": "vscode",
+  
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode-remote.remote-containers"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+      }
+    }
+  }
+}
